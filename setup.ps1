@@ -3,20 +3,25 @@ $OrigStr = "yjring"
 
 # 讀取 env.yaml，並存入相應變數
 $envContent = Get-Content -Path env.yaml
-$DOCKER_ACCOUNT = ($envContent -match "dockerAccount:\s*([\S]+)") ? $matches[1] : $null
-$OS_ARCH = ($envContent -match "os:\s*([\S]+)") ? $matches[1] : $null
+#$DOCKER_ACCOUNT = ($envContent -match "dockerAccount:\s*([\S]+)") ? $matches[1] : $null
+$DOCKER_ACCOUNT = "KeithChen16"
+#$OS_ARCH = ($envContent -match "os:\s*([\S]+)") ? $matches[1] : $null
+$OS_ARCH = "amd"
 
-switch ($OS_ARCH) {
-    "arm", "arm64" {
-        $PLATFORMS = "linux/arm64"
-    }
-    "amd", "amd64" {
-        $PLATFORMS = "linux/amd64"
-    }
-    default {
-        $PLATFORMS = "linux/amd64,linux/arm64"
-    }
-}
+# switch ($OS_ARCH) {
+#     "arm", "arm64" {
+#         $PLATFORMS = "linux/arm64"
+#     }
+#     "amd", "amd64" {
+#         $PLATFORMS = "linux/amd64"
+#     }
+#     default {
+#         $PLATFORMS = "linux/amd64,linux/arm64"
+#     }
+# }
+ 
+
+ $PLATFORMS = "linux/amd64"
 
 # 進入到 .github/workflows/
 Set-Location -Path .\.github\workflows\
